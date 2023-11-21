@@ -65,7 +65,7 @@ export default function CadAluno() {
                                     <input
                                         id="cpf"
                                         name="cpf"
-                                        type="text"
+                                        type="number"
                                         value={cpf}
                                         onChange={(e) => setCpf(e.target.value)}
                                         required
