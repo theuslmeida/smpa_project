@@ -34,7 +34,7 @@ export default function Camera() {
       const Pre_formdata = new FormData();
       Pre_formdata.append("imagem", blob, "imagem.png");
       Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-      const response = await axios.post("http://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
+      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
       if (response.data.return == true){
         navigate("/aprovado");  
         return
@@ -45,7 +45,7 @@ export default function Camera() {
         formNeg.append('email', localStorage.getItem("email_aluno"));
         formNeg.append('cpf', localStorage.getItem("cpf_aluno"));
         formNeg.append('imagem', blob, 'imagem.png');
-        await axios.post("http://sampa.pythonanywhere.com/Imagens_negativas/?format=json", formNeg)
+        await axios.post("https://sampa.pythonanywhere.com/Imagens_negativas/?format=json", formNeg)
         navigate("/negado");
         return
       }
@@ -108,7 +108,7 @@ export default function Camera() {
       const blob = await fetch(imageSrc).then((r) => r.blob());
       Pre_formdata.append("imagem", blob, "imagem.png");
       Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-      const response = await axios.post("http://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
+      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
 
       setpreDetect(response.data.response);
       if(response.data.return == true){
