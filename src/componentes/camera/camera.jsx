@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Camera() {
   const webcamRef = React.useRef(null);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(1000);
   const [preDetect, setpreDetect] = useState("");
-  const [cont2, setCont2] = useState(4);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,10 +21,28 @@ export default function Camera() {
       else {
         return
       }
-    }, 1000);
+    }, 1750);
     return () => clearInterval(timer);
   }, [countdown]);
 
+  async function Pre_detect() {
+    const imageSrc = webcamRef.current.getScreenshot();
+    if (imageSrc){
+      const Pre_formdata = new FormData();
+      const blob = await fetch(imageSrc).then((r) => r.blob());
+      Pre_formdata.append("imagem", blob, "imagem.png");
+      Pre_formdata.append("email", localStorage.getItem("email_aluno"));
+      console.log("Mandei!")
+      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
+      console.log(response.data.response)
+
+      setpreDetect(response.data.response);
+      if(response.data.return == true){
+        navigate("/aprovado")
+        return
+      }
+    }
+  }
 
   async function Camera() {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -34,7 +51,7 @@ export default function Camera() {
       const Pre_formdata = new FormData();
       Pre_formdata.append("imagem", blob, "imagem.png");
       Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
+      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_camera/", Pre_formdata);
       if (response.data.return == true){
         navigate("/aprovado");  
         return
@@ -51,72 +68,7 @@ export default function Camera() {
       }
     }
   }
-  async function Pre_detect() {
-    const imageSrc = webcamRef.current.getScreenshot();
-    if (imageSrc) {
-      if (countdown === 1) {
-        const blob = await fetch(imageSrc).then((r) => r.blob());
-        const Pre_formdata = new FormData();
-        Pre_formdata.append("imagem", blob, "imagem.png");
-        Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-        const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
-        if (response.data.deteccao_resultado === true) {
-          navigate("/aprovado");  
-          return
-        }
-        else{
-          const formNeg = new FormData();
-          formNeg.append('nome', localStorage.getItem("nome"))
-          formNeg.append('email', localStorage.getItem("email_aluno"));
-          formNeg.append('cpf', localStorage.getItem("cpf_aluno"))
-          formNeg.append('imagem', blob, 'imagem.png');
-          await axios.post("https://sampa.pythonanywhere.com/Imagens_negativas/?format=json", formNeg)
-          navigate("/negado");  
-          return
-        }
-      }
-
-      try {
-        const blob = await fetch(imageSrc).then((r) => r.blob());
-        const Pre_formdata = new FormData();
-        Pre_formdata.append("imagem", blob, "imagem.png");
-        Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-        const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
-
-        if(response){
-          if (response.data.deteccao_resultado === true) {
-            setCont2(cont2 - 1);
-            console.log(cont2)
-            
-            if (cont2 === 0) {
-              navigate("/aprovado");
-            }
-          }
-          setpreDetect(response.data.pre_deteccao_resultado);
-        }
-      } 
-      catch (error) {
-        alert(error);
-      }
-    }
-  }
-
-  async function Pre_detect() {
-    const imageSrc = webcamRef.current.getScreenshot();
-    if (imageSrc){
-      const Pre_formdata = new FormData();
-      const blob = await fetch(imageSrc).then((r) => r.blob());
-      Pre_formdata.append("imagem", blob, "imagem.png");
-      Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-      const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
-
-      setpreDetect(response.data.response);
-      if(response.data.return == true){
-        navigate("/aprovado")
-        return
-      }
-    }
-  }
+  
 
   return (
     <>
