@@ -21,7 +21,7 @@ export default function Camera() {
       else {
         return
       }
-    }, 1750);
+    }, 1500);
     return () => clearInterval(timer);
   }, [countdown]);
 
