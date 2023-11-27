@@ -18,7 +18,7 @@ export default function LogAluno(){
             response = response.data
             for (let c = 0; c < response.length+1; c++){
                 if(response[c].cpf.slice(-4) == cpf.slice(-4)){
-                    navigate("/Inicio")
+                    navigate("/Scanear")
                     localStorage.setItem("nome", response[c].nome)
                     localStorage.setItem("email_aluno", response[c].email)
                     localStorage.setItem("cpf_aluno", response[c].cpf)
