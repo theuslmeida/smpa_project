@@ -5,7 +5,6 @@ import NavBar from "../../componentes/navbar/nav"
 export default function Scaneamento(){
     return(
         <>
-        <NavBar></NavBar>
         <Camera/>
         </>
     )

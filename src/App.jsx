@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Iniciar from "./pages/inicial/inicial";
 import Scaneamento from "./pages/scaneamento/scaneamento";
 import admin from "./pages/admin/admin";
 import Segurança from "./pages/segurança/Segurança";
@@ -13,7 +12,7 @@ import Sobre from "./pages/SobreNós/Sobre";
 import Fotos from "./pages/imagens/imagens";
 import ScanOnline from "./pages/ScanOnline/ScanOnline";
 import FotosNegadas from "./pages/FotosNeg/FotosNegadas";
-
+import Termos from "./pages/termos/termos";
 
 
 export default function App() {
@@ -22,7 +21,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" Component={LogAluno} />
-          <Route path="/Inicio" Component={Iniciar} />
+          <Route path="/Termos" Component={Termos} />
           <Route path="/Segurança" Component={Segurança} />
           <Route path="/Professor" Component={Prof} />
           <Route path="/Sobre" Component={Sobre} />

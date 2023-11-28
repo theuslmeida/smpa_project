@@ -104,8 +104,10 @@ export default function Camera() {
         )}
            
         </>
+      ) : (
+        console.log("OI")
       )}  
-      <div className="bg-[url('../public/fundo-transparente-png7.png')] bg-cover bg-center py-16 h-screen">
+      <div className="bg-[url('../public/fundo-transparente-png7.png')] bg-cover bg-center h-screen">
         <div
           className=" bg-slate-600 flex items-center justify-center"
           alt="Bem-Vindo"
