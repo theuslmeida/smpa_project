@@ -18,7 +18,7 @@ export default function Camera() {
         Pre_detect();
       } 
       else if(countdown == 0){
-        if (cont != 5){
+        if (cont != 3){
           setCont(cont + 1)
           setModal(true)
         }
