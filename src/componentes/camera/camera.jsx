@@ -104,8 +104,6 @@ export default function Camera() {
         )}
            
         </>
-      ) : (
-        console.log("OI")
       )}  
       <div className="bg-[url('../public/fundo-transparente-png7.png')] bg-cover bg-center py-16 h-screen">
         <div
