@@ -22,7 +22,7 @@ export default function Camera() {
           setCont(cont + 1)
           setModal(true)
         }
-        else if (cont == 5){
+        else if (cont == 3){
           Post_negs()
           return
         }
