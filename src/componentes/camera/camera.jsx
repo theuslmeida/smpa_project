@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Camera() {
   const webcamRef = React.useRef(null);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(10);
   const [preDetect, setpreDetect] = useState("");
   const navigate = useNavigate();
   const [cont, setCont] = useState(1)
@@ -17,7 +17,7 @@ export default function Camera() {
         setCountdown(countdown - 1);
         Pre_detect();
       } 
-      else if(countdown == 0){
+      else if(countdown == 1){
         if (cont != 3){
           setCont(cont + 1)
           setModal(true)
