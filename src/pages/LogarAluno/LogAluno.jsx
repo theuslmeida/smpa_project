@@ -14,7 +14,7 @@ export default function LogAluno(){
             setResponse("O campo esta vazio!")
             return
         }
-        else if(cpf.length > 11){
+        else if(cpf.length > 11 || cpf.length < 11){
             setResponse("Cpf invalido!")
             return
         }
