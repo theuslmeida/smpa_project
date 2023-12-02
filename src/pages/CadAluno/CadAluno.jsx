@@ -5,13 +5,31 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 export default function CadAluno() {
+    const [nome, setNome] = useState("")
+    const [cpf, setCpf] = useState("")
     const [email, setEmail] = useState("")
-    const [cpf,setCpf ] = useState("")
-    const [nome,setNome ] = useState("")
+    const [response, setResponse] = useState("")
     const navigate = useNavigate();
 
     async function handleSubmit(e){
         e.preventDefault();
+        if(nome == ""){
+            setResponse("O campo nome esta vazio")
+            return
+        }
+        else if(email == ""){
+            setResponse("O campo email esta vazio")
+            return
+        }
+        else if (cpf == ""){
+            setResponse("O campo cpf esta vazio")
+            return
+        }
+        else if(cpf.length > 11){
+            setResponse("Cpf invalido!")
+            return
+        }
+
         try {
             let data = {
                 nome: nome,
@@ -26,8 +44,8 @@ export default function CadAluno() {
             alert("Ouve um erro de servidor -> "+error)
         }
     }
-    return (
 
+    return (
         <>
             <NavBar></NavBar>
             <div className="bg-[#EBEBEB] h-[93vh] flex justify-center bg-no-repeat bg-center bg-cover " style={{ backgroundImage: "url('https://images8.alphacoders.com/440/thumb-1920-440484.jpg')" }}>
@@ -86,6 +104,7 @@ export default function CadAluno() {
                                 />
                             </div>
                             <div>
+                                <h1 class="text-red-500">{response}</h1>
                                 <button type="submit" className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cadastrar Aluno</button>
                             </div>
                         </form>
