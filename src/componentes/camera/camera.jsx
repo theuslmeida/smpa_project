@@ -135,7 +135,9 @@ export default function Camera() {
               <p className="text-[20px] xl:text-[50px]">
                 3- Espere a verificação
               </p>
-              {/*<button className="w-52 h-12 rounded-xl shadow-black bg-red-600 mt-14"><h1 className="text-white text-2xl">Testar</h1></button>*/}
+              <p className="text-[20px] xl:text-[50px]">
+                4- Coloque a camera no nivel do seu rosto
+              </p>
               {countdown > 0 ? (
                 <p className="h-10 w-96 text-2xl ml-[5%] xl:text-[50px] ">
                   {countdown}
