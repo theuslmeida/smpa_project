@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Camera() {
   const webcamRef = React.useRef(null);
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(100000);
   const [preDetect, setpreDetect] = useState("");
   const navigate = useNavigate();
   const [cont, setCont] = useState(1)
