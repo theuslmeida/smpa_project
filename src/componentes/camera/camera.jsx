@@ -52,9 +52,8 @@ export default function Camera() {
     const blob = await fetch(imageSrc).then((r) => r.blob());
     Pre_formdata.append("imagem", blob, "imagem.png");
     Pre_formdata.append("email", localStorage.getItem("email_aluno"));
-    console.log("ENviei")
+    Pre_formdata.append("nome", localStorage.getItem("nome"));
     const response = await axios.post("https://sampa.pythonanywhere.com/enviar_img/", Pre_formdata);
-    console.log(response.data)
 
     setpreDetect(response.data.response);
     if(response.data.return){
